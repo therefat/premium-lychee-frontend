@@ -1,5 +1,6 @@
 import React from 'react'
-import Logos from '../assets/logo/logoss.png'
+import Logos from '../assets/logo/logo.png'
+import Profile from '../assets/images/profile.jpg'
 
 function Navbar() {
   return (
@@ -24,7 +25,7 @@ function Navbar() {
       </ul>
     </div>
     {/* <a className="btn btn-ghost normal-case text-xl"></a> */} 
-    <img width={"131px"} src={Logos} alt="" />
+    <img  src={Logos} alt="" />
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1">
@@ -56,7 +57,7 @@ function Navbar() {
     <div className="dropdown dropdown-end">
       <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
         <div className="w-10 rounded-full">
-          <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+          <img src={Profile} />
         </div>
       </label>
       <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-neutral-100 rounded-box w-52">

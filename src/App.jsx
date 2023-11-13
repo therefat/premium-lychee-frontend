@@ -12,7 +12,7 @@ function App() {
     <>
      <Home/>
      {/* <img src="./assetes/logo/logoss.png" alt="" />  */}
-     <img src="/media/refat/Document1/dev/projects/premium lychee/premium-lychee-frontend/src/assets/logo/logoss.png" alt="" />
+     {/* <img src="/media/refat/Document1/dev/projects/premium lychee/premium-lychee-frontend/src/assets/logo/logoss.png" alt="" /> */}
       
     </>
   )
