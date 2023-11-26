@@ -4,16 +4,19 @@ import './App.css'
 import Navbar from './Component/Navbar'
 import Footer from './Component/Footer'
 import Home from './pages/Home'
+import { Route, Routes } from 'react-router-dom'
+import SignUp from './pages/SignUp'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
-     <Home/>
-     {/* <img src="./assetes/logo/logoss.png" alt="" />  */}
-     {/* <img src="/media/refat/Document1/dev/projects/premium lychee/premium-lychee-frontend/src/assets/logo/logoss.png" alt="" /> */}
-      
+     <Routes>
+        <Route exact path='/' element={<Home/>}></Route>
+        <Route exact path='/signup' element={<SignUp/>}></Route>
+     </Routes>
+     
     </>
   )
 }
