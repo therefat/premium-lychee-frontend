@@ -5,24 +5,32 @@ import axios from 'axios';
 
 function Login() {
   const [email,setEmail] = useState('')
-  const [password,setPassword] = useState()
+  const [password,setPassword] = useState('')
   const [newUsers,setUsers] = useState()
   const [error, setError] = useState(null);
   const hisotoyr = useNavigate()
   const submitForm = (e) => {
-    e.preventDefault();
+    e.preventDefault(e);
     axios.post('http://localhost:8080/auth/login',{
         email : email,
         password : password
     })
     .then(response => {
-        // console.log(response)
+        console.log(response)
     })
     .catch(error => {
-        setError(error.response.data)
+        
+        console.log(error.response)
+        if(error.response.status == 422){
+            setError(error.response.data.errors)
+        }
+        else{
+            setError(error.response.data)
+        }
+        
     })
   }
-  console.log(error)
+  
   return (
     <Layout>
     <div>
@@ -49,7 +57,7 @@ function Login() {
                 
                 <div>
                     <button className="btn btn-block btn-primary">Sign Up</button>
-                    {error && <p className="text-red-700">{error.errors}</p>}
+                    {error?.errors && <p className="text-red-700">{error?.errors}</p>}
                 </div>
                 <span>Don't have an account? ?
                     <Link href="#" to={'/signup'} className="text-blue-600 hover:text-blue-800 ">Create one</Link></span>
