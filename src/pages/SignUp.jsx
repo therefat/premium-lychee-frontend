@@ -62,6 +62,7 @@ function SignUp() {
                 <div>
                     <button className="btn btn-block btn-primary">Sign Up</button>
                 </div>
+                
                 <span>Already have an account ?
                     <Link to={'/login'} href="#" className="text-blue-600 hover:text-blue-800 ">Login</Link></span>
             </form>
