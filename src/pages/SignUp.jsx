@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Layout from "../layout/Layout";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function SignUp() {
@@ -63,7 +63,7 @@ function SignUp() {
                     <button className="btn btn-block btn-primary">Sign Up</button>
                 </div>
                 <span>Already have an account ?
-                    <button href="#" className="text-blue-600 hover:text-blue-800 ">Login</button></span>
+                    <Link to={'/login'} href="#" className="text-blue-600 hover:text-blue-800 ">Login</Link></span>
             </form>
         </div>
     </div>
