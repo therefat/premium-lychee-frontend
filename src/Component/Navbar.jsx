@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Logos from '../assets/logo/logo.png'
 import Profile from '../assets/images/profile.jpg'
+import { UserContext } from '../contex/UserContext'
+import { Link } from 'react-router-dom'
 
 function Navbar() {
+  const {isLoggedIn,setIsLoggedIn} = useContext(UserContext)
   return (
     <>
         
@@ -25,7 +28,7 @@ function Navbar() {
       </ul>
     </div>
     {/* <a className="btn btn-ghost normal-case text-xl"></a> */} 
-    <img  src={Logos} alt="" />
+   <Link to={'/'}> <img  src={Logos} alt="" /></Link>
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1">
@@ -56,9 +59,11 @@ function Navbar() {
     </div>
     <div className="dropdown dropdown-end">
       <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-        <div className="w-10 rounded-full">
+        {
+          isLoggedIn ? <div className="w-10 rounded-full">
           <img src={Profile} />
-        </div>
+        </div> : <Link to={'/login'}>Login</Link>
+        }
       </label>
       <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-neutral-100 rounded-box w-52">
         <li>

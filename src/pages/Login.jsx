@@ -1,13 +1,16 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import Layout from '../layout/Layout';
 import axios from 'axios';
+import { UserContext } from '../contex/UserContext';
 
 function Login() {
   const [email,setEmail] = useState('')
   const [password,setPassword] = useState('')
   const [newUsers,setUsers] = useState()
+
   const [error, setError] = useState(null);
+  const {isLoggedIn,setIsLoggedIn} = useContext(UserContext)
   const hisotoyr = useNavigate()
   const submitForm = (e) => {
     e.preventDefault(e);
@@ -17,6 +20,11 @@ function Login() {
     })
     .then(response => {
         console.log(response)
+        setIsLoggedIn(response.data.LoggedIn)
+        hisotoyr('/')
+      localStorage.setItem('token',response.data.token)
+    //   axios.defaults.headers.common= 'Bearer' + response.data.token 
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + response.data.token;
     })
     .catch(error => {
         
@@ -30,7 +38,7 @@ function Login() {
         
     })
   }
-  
+  console.log(isLoggedIn)
   return (
     <Layout>
     <div>
