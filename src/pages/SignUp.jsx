@@ -12,7 +12,7 @@ function SignUp() {
     const hisotoyr = useNavigate()
     const submitForm = (e) => {
         e.preventDefault(e);
-        axios.post('http://localhost:8080/auth/signup',{
+        axios.post('auth/signup',{
             name: name,
             email: email,
             password: password
@@ -23,11 +23,12 @@ function SignUp() {
 
         })
         .catch((error) => {
+           
             setError(error.response.data.errors)
-            console.log(error)
+            
         })
     }
-    console.log(error)
+    
   return (
     <Layout>
       <div>

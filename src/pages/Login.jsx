@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import Layout from '../layout/Layout';
+import { jwtDecode } from "jwt-decode";
 import axios from 'axios';
 import { UserContext } from '../contex/UserContext';
 
@@ -10,7 +11,7 @@ function Login() {
   const [newUsers,setUsers] = useState()
 
   const [error, setError] = useState(null);
-  const {isLoggedIn,setIsLoggedIn} = useContext(UserContext)
+  const {setUserData,setIsLoggedIn} = useContext(UserContext)
   const hisotoyr = useNavigate()
   const submitForm = (e) => {
     e.preventDefault(e);
@@ -20,6 +21,8 @@ function Login() {
     })
     .then(response => {
         console.log(response)
+        const token_decode = jwtDecode(response.data.token) 
+        setUserData(token_decode)
         setIsLoggedIn(response.data.LoggedIn)
         hisotoyr('/')
       localStorage.setItem('token',response.data.token)
@@ -38,7 +41,7 @@ function Login() {
         
     })
   }
-  console.log(isLoggedIn)
+  
   return (
     <Layout>
     <div>
@@ -64,7 +67,7 @@ function Login() {
                 </div>
                 
                 <div>
-                    <button className="btn btn-block btn-primary">Sign Up</button>
+                    <button className="btn btn-block btn-primary">Login</button>
                     {error?.errors && <p className="text-red-700">{error?.errors}</p>}
                 </div>
                 <span>Don't have an account? ?

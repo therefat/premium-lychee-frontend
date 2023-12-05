@@ -7,16 +7,17 @@ import Home from './pages/Home'
 import { Route, Routes } from 'react-router-dom'
 import SignUp from './pages/SignUp'
 import Login from './pages/Login'
-import { UserContext } from './contex/UserContext'
+import UserProvider, { UserContext } from './contex/UserContext'
 import PrivetOulet from './Component/PrivetOulet'
+import axios from 'axios'
 
 function App() {
   const [count, setCount] = useState(0)
-  const [isLoggedIn,setIsLoggedIn] = useState()
-
+ 
+  axios.defaults.baseURL="http://localhost:8080/"
   return (
     <>
-     <UserContext.Provider value={{isLoggedIn,setIsLoggedIn}}>
+     <UserProvider>
      <Routes>
         <Route exact path='/' element={<Home/>}></Route>
         <Route exact path='/signup' element={<SignUp/>}></Route>
@@ -28,7 +29,7 @@ function App() {
      </Routes>
 
 
-     </UserContext.Provider>
+     </UserProvider>
      
     </>
   )

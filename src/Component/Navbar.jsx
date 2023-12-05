@@ -5,7 +5,8 @@ import { UserContext } from '../contex/UserContext'
 import { Link } from 'react-router-dom'
 
 function Navbar() {
-  const {isLoggedIn,setIsLoggedIn} = useContext(UserContext)
+  const {isLoggedIn,userData,setIsLoggedIn} = useContext(UserContext)
+  console.log(userData)
   return (
     <>
         
@@ -57,26 +58,28 @@ function Navbar() {
         </div>
       </div>
     </div>
+    {
+      userData ?
     <div className="dropdown dropdown-end">
       <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-        {
-          isLoggedIn ? <div className="w-10 rounded-full">
+         <div className="w-10 rounded-full">
           <img src={Profile} />
-        </div> : <Link to={'/login'}>Login</Link>
-        }
+        </div> 
+        
       </label>
       <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-neutral-100 rounded-box w-52">
         <li>
           <a className="justify-between">
-            Profile
+            {/* Proffile  */} 
+            {userData?.data?.name}
             <span className="badge">New</span>
           </a>
         </li>
         <li><a>Settings</a></li>
         <li><a>Logout</a></li>
       </ul>
-    </div>
-  
+    </div> : <Link to={'/login'}>Login</Link>
+}
   </div>
 </div>
     </>
