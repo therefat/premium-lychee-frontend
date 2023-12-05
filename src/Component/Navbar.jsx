@@ -2,10 +2,39 @@ import React, { useContext } from 'react'
 import Logos from '../assets/logo/logo.png'
 import Profile from '../assets/images/profile.jpg'
 import { UserContext } from '../contex/UserContext'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 function Navbar() {
-  const {isLoggedIn,userData,setIsLoggedIn} = useContext(UserContext)
+  const navigate = useNavigate()
+  const {isLoggedIn,userData,updateUserData} = useContext(UserContext)
+  const handleLogout = () => {
+    const token = localStorage.getItem('token')
+
+    // axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    axios.post('auth/logout',{
+      
+        
+    },{
+      headers: {
+        Authorization: token
+      }
+    })
+    .then(response => {
+      if(response.data.succes){
+        localStorage.clear()
+        updateUserData(null)
+     
+      }
+     
+      
+    })
+    .catch(error => {
+      console.log(error)
+    })
+    navigate("/", { replace: true });
+    
+  }
   console.log(userData)
   return (
     <>
@@ -76,7 +105,7 @@ function Navbar() {
           </a>
         </li>
         <li><a>Settings</a></li>
-        <li><a>Logout</a></li>
+        <li><a onClick={handleLogout}>Logout</a></li>
       </ul>
     </div> : <Link to={'/login'}>Login</Link>
 }
