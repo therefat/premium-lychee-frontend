@@ -8,10 +8,11 @@ import axios from 'axios'
 function Navbar() {
   const navigate = useNavigate()
   const {isLoggedIn,userData,updateUserData} = useContext(UserContext)
+  console.log(isLoggedIn)
   const handleLogout = () => {
     const token = localStorage.getItem('token')
 
-    // axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     axios.post('auth/logout',{
       
         
@@ -62,7 +63,7 @@ function Navbar() {
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1">
-      <li><a>Product</a></li>
+      <li><Link to={'/product'}>Product</Link></li>
       <li >
         <a href="">Contact</a>
       </li>

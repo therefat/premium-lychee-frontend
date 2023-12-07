@@ -13,6 +13,9 @@ const UserProvider = ({children}) => {
         try{
              // Retrieve the stored token from local storage
             if(localStorage.getItem('token')){
+              
+
+        
                 const token_decode = jwtDecode(localStorage.getItem('token'))
                 if(token_decode.exp * 1000 < Date.now()){
                       // If the token is expired, clear local storage and reset user data
@@ -21,6 +24,7 @@ const UserProvider = ({children}) => {
                 } else{
                     // If the token is valid, update the user data in the state
                     setUserData(token_decode)
+                    setIsLoggedIn(localStorage.getItem('token'))
                 }
             }
            } 
