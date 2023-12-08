@@ -4,7 +4,12 @@ import { Navigate, Outlet } from 'react-router-dom'
 
 function PrivetOulet() {
     const {isLoggedIn,userData,setIsLoggedIn} = useContext(UserContext)
-  return userData ? <Outlet></Outlet> : <Navigate to={'/login'}></Navigate>
+     // Redirect to login if user is not logged in
+     const tokkes = localStorage.getItem('token')
+  if (!tokkes) {
+    return <Navigate to={'/login'} />;
+  }
+  return  <Outlet></Outlet> 
 }
 
 export default PrivetOulet

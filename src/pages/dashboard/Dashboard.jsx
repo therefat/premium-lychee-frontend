@@ -7,21 +7,22 @@ import axios from 'axios';
 
 
 function Dashboard() {
-  // const { userData } = useContext(UserContext); 
+  const { userData } = useContext(UserContext); 
+  
 
-  const token = localStorage.getItem('token')
-
-  axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+  
 
   return (
     <Layout>
          
                     
+                    <DashboardLayout>
                     <div>
-                      {/* <h3>Hello, {userData?.name}</h3>
-                      <p>Email: {userData?.email}</p>
-                      <p>Phone: {userData?.phone}</p> */} gghg
+                       <h3>Hello, {userData?.data.name}</h3>
+                      <p>Email: {userData?.data.email}</p>
+                      <p>Phone: {userData?.data.phone}</p>  
                     </div>
+                    </DashboardLayout>
   
         
         

@@ -99,11 +99,11 @@ function Navbar() {
       </label>
       <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-neutral-100 rounded-box w-52">
         <li>
-          <a className="justify-between">
+          <Link to={'/user/dashboard'} className="justify-between">
             {/* Proffile  */} 
             {userData?.data?.name}
             <span className="badge">New</span>
-          </a>
+          </Link>
         </li>
         <li><a>Settings</a></li>
         <li><a onClick={handleLogout}>Logout</a></li>

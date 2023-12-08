@@ -12,6 +12,7 @@ import PrivetOulet from './Component/PrivetOulet'
 import axios from 'axios'
 import Product from './pages/Product/Product'
 import Dashboard from './pages/dashboard/Dashboard'
+import AddProduct from './pages/dashboard/AddProduct'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -27,7 +28,8 @@ function App() {
         
         <Route path='/*' element={<PrivetOulet></PrivetOulet>}>
           <Route path='product' element={<Product/>}></Route>
-          <Route path='ddd' element={<Dashboard/>}></Route>
+          <Route path='user/dashboard' element={<Dashboard/>}></Route> 
+          <Route path='user/addproduct' element={<AddProduct></AddProduct>}></Route>
           {/* <Route path='dashboard' element={<Dashboard/>}></Route> */}
          
         </Route>
