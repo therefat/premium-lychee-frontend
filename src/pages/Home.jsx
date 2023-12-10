@@ -6,6 +6,7 @@ import slider3 from '../assets/images/sliderImage/slider3.jpg'
 import Slider from 'react-slick'
 import Dashboard from './dashboard/Dashboard'
 import Products from '../Component/Products'
+import '../assets/css/home.css'
 
 function Home() {
   const sliderSettings = {

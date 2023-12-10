@@ -1,13 +1,16 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function ProductCard(props) {
     const  {item} = props
   return (
     <div className="bg-base-100 rounded-lg overflow-hidden shadow-lg ring-4 ring-red-500 ring-opacity-40 max-w-sm">
     <div className="relative">
+        <Link  to={'/lychee/' + item.name}>
         <img className="w-full h-[250px]" src={item.image} alt="Product Image"/>
         <div className="absolute top-0 right-0 bg-red-500 text-white px-2 py-1 m-2 rounded-md text-sm font-medium">SALE
-        </div>
+        </div> 
+        </Link>
     </div>
     <div className="p-4">
         <h3 className="text-lg font-medium mb-2">{item.name}</h3>
@@ -19,9 +22,9 @@ function ProductCard(props) {
             <button className="btn btn-primary hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
                 Add to Cart
             </button>
-            <button className="btn btn-primary hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+            <Link  to={'/lychee/' + item.name} className="btn btn-primary hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
                 Buy Now
-            </button>
+            </Link>
         </div>
     </div>
 </div>

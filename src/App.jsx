@@ -15,6 +15,8 @@ import Dashboard from "./pages/dashboard/Dashboard";
 import AddProduct from "./pages/dashboard/AddProduct";
 import AdminOutlet from "./Component/AdminOutlet";
 import NotFound from "./pages/NotFound";
+import ProductBuy from "./pages/Product/ProductBuy";
+import ProductList from "./pages/dashboard/ProductList";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -32,6 +34,7 @@ function App() {
           <Route path="/*" element={<PrivetOulet></PrivetOulet>}>
             <Route path="product" element={<Product />}></Route>
             <Route path="user/dashboard" element={<Dashboard />}></Route>
+            <Route path="user/productlist" element={<ProductList/>}> </Route>
             <Route path="user/*" element={<AdminOutlet />}>
           
               <Route path="addproduct" element={<AddProduct />} />
@@ -39,7 +42,9 @@ function App() {
             </Route>
             <Route path="notfound" element={<NotFound />} />
            
-          </Route>
+          </Route> 
+          <Route path="/lychee/:name" element={<ProductBuy/>}></Route> 
+          <Route path=""> </Route>
           
         </Routes>
       </UserProvider>
