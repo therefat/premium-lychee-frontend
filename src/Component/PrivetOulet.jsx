@@ -6,6 +6,8 @@ function PrivetOulet() {
     const {isLoggedIn,userData,setIsLoggedIn} = useContext(UserContext)
      // Redirect to login if user is not logged in
      const tokkes = localStorage.getItem('token')
+     
+     console.log(tokkes)
   if (!tokkes) {
     return <Navigate to={'/login'} />;
   }

@@ -22,7 +22,8 @@ function Navbar() {
       }
     })
     .then(response => {
-      if(response.data.succes){
+      console.log(response)
+      if(!response.data.succes){
         localStorage.clear()
         updateUserData(null)
      
