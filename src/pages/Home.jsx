@@ -5,6 +5,7 @@ import slider2 from '../assets/images/sliderImage/slider2.png'
 import slider3 from '../assets/images/sliderImage/slider3.jpg'
 import Slider from 'react-slick'
 import Dashboard from './dashboard/Dashboard'
+import Products from '../Component/Products'
 
 function Home() {
   const sliderSettings = {
@@ -32,7 +33,8 @@ function Home() {
         </Slider>
 
        </div>
-       {/* <Dashboard/> */}
+       {/* <Dashboard/> */} 
+       <Products/>
     </Layout>
   )
 }

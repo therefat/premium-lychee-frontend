@@ -6,7 +6,7 @@ function Layout({children}) {
   return (
     <> 
         <Navbar></Navbar>
-        <div className='min-h-[75vh] mx-auto pb-5 bg-neutral-100'>
+        <div className='min-h-[75vh] mx-auto w-[90%] pb-5 bg-neutral-100'>
           {children}
         </div>
         <Footer/>
