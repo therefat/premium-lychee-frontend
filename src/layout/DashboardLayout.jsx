@@ -19,7 +19,7 @@ function DashboardLayout({ children }) {
 
     <div className="col-span-2 p-6">
          <Link to={'/user/dashboard'} className={`mx-4 p-2 ${window.location.pathname === '/user/dashboard' ? 'bg-blue-800 text-white' : 'bg-blue-400'} rounded-lg flex w-100 justify-center mb-4`}>Dashboard</Link>
-        {userData?.data?.role == 'admin' && <Link to={'/user/addproduct'} className={`mx-4 p-2 ${window.location.pathname === '/user/profile' ? 'bg-blue-800 text-white' : 'bg-blue-400'} rounded-lg flex w-100 justify-center mb-4`}>Profile</Link> } 
+        {userData?.data?.role == 'admin' && <Link to={'/user/addproduct'} className={`mx-4 p-2 ${window.location.pathname === '/user/addproduct' ? 'bg-blue-800 text-white' : 'bg-blue-400'} rounded-lg flex w-100 justify-center mb-4`}>Add Product</Link> } 
         <Link to={'/user/productlist'} className={`mx-4 p-2 ${window.location.pathname === '/user/dashboard' ? 'bg-blue-800 text-white' : 'bg-blue-400'} rounded-lg flex w-100 justify-center mb-4`}>All Product</Link>
     </div>
 
