@@ -14,7 +14,7 @@ function Products() {
       console.log(error)
      })
     },[] ) 
-    console.log(productData)
+    // console.log(productData)
   return (
     <div>Products
 

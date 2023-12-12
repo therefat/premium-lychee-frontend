@@ -18,6 +18,8 @@ import NotFound from "./pages/NotFound";
 import ProductBuy from "./pages/Product/ProductBuy";
 import ProductList from "./pages/dashboard/ProductList";
 import UpdateProduct from "./pages/Product/UpdateProduct";
+import CartProvider from "./contex/CartContext";
+import Cart from "./pages/Cart";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -25,7 +27,8 @@ function App() {
   axios.defaults.baseURL = "http://localhost:8080/";
   return (
     <>
-      <UserProvider>
+      <UserProvider> 
+        <CartProvider>
         <Routes>
         <Route path="*" element={<NotFound />} />
           <Route exact path="/" element={<Home />}></Route>
@@ -47,9 +50,10 @@ function App() {
           </Route> 
           <Route path="/lychee/:name" element={<ProductBuy/>}></Route> 
           
-          <Route path=""> </Route>
+          <Route path="/cart" element={<Cart/>}> </Route>
           
-        </Routes>
+        </Routes> 
+        </CartProvider>
       </UserProvider>
     </>
   );

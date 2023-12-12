@@ -1,8 +1,34 @@
+import axios from 'axios'
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 function ProductCard(props) {
-    const  {item} = props
+    const  {item} = props 
+    const navigate = useNavigate()
+    const addToCart = () => { 
+        // console.log('test')
+        const token = localStorage.getItem("token");
+        if(token){
+            axios.post('cart/addcart',{
+            itemId : item._id,
+            quantity: 50
+          },{headers: {
+            Authorization: token,
+            
+          },})
+          .then((response) => {
+            
+          // let datas = response.data.items.length
+          //  setCarts(response)
+          })
+          .catch((err) =>{
+            console.log(err)
+          })
+        } else {
+          navigate('/login')
+        }
+
+    }
   return (
     <div className="bg-base-100 rounded-lg overflow-hidden shadow-lg ring-4 ring-red-500 ring-opacity-40 max-w-sm">
     <div className="relative">
@@ -19,7 +45,7 @@ function ProductCard(props) {
         </div>
         <div className="flex items-center justify-between">
             {/*  */} 
-            <button className="btn btn-primary hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+            <button onClick={() => addToCart(item)} className="btn btn-primary hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
                 Add to Cart
             </button>
             <Link  to={'/lychee/' + item.name} className="btn btn-primary hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
