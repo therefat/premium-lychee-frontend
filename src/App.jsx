@@ -38,11 +38,12 @@ function App() {
           <Route path="/*" element={<PrivetOulet></PrivetOulet>}>
             <Route path="product" element={<Product />}></Route>
             <Route path="user/dashboard" element={<Dashboard />}></Route>
-            <Route path="user/productlist" element={<ProductList/>}> </Route>
+           
             <Route path="item/:id" element={<UpdateProduct/>}></Route>
             <Route path="user/*" element={<AdminOutlet />}>
           
-              <Route path="addproduct" element={<AddProduct />} />
+              <Route path="addproduct" element={<AddProduct />} /> 
+              <Route path="productlist" element={<ProductList/>}> </Route>
               
             </Route>
             <Route path="notfound" element={<NotFound />} />

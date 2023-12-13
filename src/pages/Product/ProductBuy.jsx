@@ -7,7 +7,9 @@ function ProductBuy() {
   const { name } = useParams(); 
   const [productInfo, setProductInfo] = useState([]);
   const [productPrice,setProductPrice] = useState(0)
-  const [attributeId,setAttributeId] = useState()
+  const [attributeId,setAttributeId] = useState() 
+  const [productQunatity,setProductQuantity] = useState()
+ 
   console.log(name)
   useEffect(() => {
     axios
@@ -24,7 +26,32 @@ function ProductBuy() {
         console.log(err);
       });
   }, []);
-  console.log(productInfo);
+  console.log(productInfo); 
+  const addToCart = () => { 
+    // console.log('test')
+    const token = localStorage.getItem("token");
+    if(token){
+        axios.post('cart/addcart',{
+        itemId : productInfo._id,
+        quantity: productQunatity,
+        attribute_price : productPrice
+      },{headers: {
+        Authorization: token,
+        
+      },})
+      .then((response) => {
+        
+      // let datas = response.data.items.length
+      //  setCarts(response)
+      })
+      .catch((err) =>{
+        console.log(err)
+      })
+    } else {
+      navigate('/login')
+    }
+
+}
   return (
     <Layout>
         <div>ProductBuy</div> 
@@ -80,7 +107,7 @@ function ProductBuy() {
                     {
                       productInfo.attributes?.map((attribute,index) => {
                        return (
-                        <button className={` ${attributeId == attribute?._id ? "bg-green-700" : "dark:bg-red-700 bg-gray-300"}  text-gray-700 dark:text-white py-2 px-4 rounded-full font-bold mr-2 hover:bg-gray-400 dark:hover:bg-gray-600`} onClick={() => {setProductPrice(attribute.attribute_price);setAttributeId(attribute._id)}}>
+                        <button className={` ${attributeId == attribute?._id ? "bg-green-700" : "dark:bg-red-700 bg-gray-300"}  text-gray-700 dark:text-white py-2 px-4 rounded-full font-bold mr-2 hover:bg-gray-400 dark:hover:bg-gray-600`} onClick={() => {setProductPrice(attribute.attribute_price);setAttributeId(attribute._id),setProductQuantity(attribute.attribute_quantity)}}>
                         {attribute.attribute_quantity} 
                       </button>
                        )
@@ -115,7 +142,20 @@ function ProductBuy() {
                     <button className="w-full bg-gray-900 dark:bg-gray-600 text-white py-2 px-4 rounded-full font-bold hover:bg-gray-800 dark:hover:bg-gray-700">
                       Buy Product
                     </button>
-                    </Link>
+                    </Link> 
+                    
+                  </div>
+                  
+                </div> 
+
+                <div className="flex -mx-2 mb-4">
+                  <div className="w-1/2 px-2">
+                    
+                    <button onClick={addToCart} className="w-full bg-gray-900 dark:bg-gray-600 text-white py-2 px-4 rounded-full font-bold hover:bg-gray-800 dark:hover:bg-gray-700">
+                      Add To Cart
+                    </button>
+                    
+                    
                   </div>
                   
                 </div>

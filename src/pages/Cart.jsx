@@ -33,48 +33,48 @@ function Cart() {
     <Layout>
         <div className='container mx-auto mt-5'>
         <table className=" min-w-full divide-y divide-gray-200 table-fixed dark:divide-gray-700">
-              <thead className="bg-gray-100 dark:bg-gray-700">
+              <thead className="bg-base-300">
                 <tr>
                   <th
                     scope="col"
-                    className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
+                    className="py-3 px-6 text-xs font-medium tracking-wider text-left text-white-700 uppercase "
                   >
                     Image
                   </th>
                   <th
                     scope="col"
-                    className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
+                    className="py-3 px-6 text-xs font-medium tracking-wider text-left text-white-700 uppercase "
                   >
                     Title
                   </th>
                   
                   <th
                     scope="col"
-                    className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
+                    className="py-3 px-6 text-xs font-medium tracking-wider text-left text-white-700 uppercase "
                   >
                     Price
                   </th>
                   <th
                     scope="col"
-                    className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
+                    className="py-3 px-6 text-xs font-medium tracking-wider text-left text-white-700 uppercase "
                   >
                     Quantity
                   </th>
                   <th
                     scope="col"
-                    className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
+                    className="py-3 px-6 text-xs font-medium tracking-wider text-left text-white-700 uppercase "
                   >
                     Subtotal
                   </th>
                   <th
                     scope="col"
-                    className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
+                    className="py-3 px-6 text-xs font-medium tracking-wider text-left text-white-700 uppercase "
                   >
                     Action 
                   </th>
                   <th
                     scope="col"
-                    className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-red-500"
+                    className="py-3 px-6 text-xs font-medium tracking-wider text-left text-red-700 uppercase dark:text-red-500"
                   >
                     Remove
                   </th>
@@ -128,7 +128,7 @@ function Cart() {
                   })}
               </tbody>
             </table>
-            <div className='grid mt-5 items-center'><Link to={'/checkout'} className=" w-48 p-4 bg-slate-700 text-cyan-400 rounded-lg hover:bg-slate-500">Checkout</Link></div>
+            <div className='grid mt-5 items-center'><Link to={'/checkout'} className=" w-48 p-4 bg-primary text-white rounded-lg hover:bg-slate-500">Checkout</Link></div>
         </div>
 
 
