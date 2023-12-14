@@ -16,7 +16,7 @@ function ProductList() {
    .catch(error => {
     console.log(error)
    })
-  },[] ) 
+  },[productData] ) 
   console.log(productData) 
 
 
@@ -29,7 +29,8 @@ function ProductList() {
         },
       })
         .then((response) => {
-          console.log(response);
+          console.log(response); 
+          setProductData([])
         })
         .catch((err) => {
           console.log(err);

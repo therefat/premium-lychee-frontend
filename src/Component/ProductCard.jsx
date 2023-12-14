@@ -1,10 +1,16 @@
 import axios from 'axios'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
 function ProductCard(props) {
     const  {item} = props 
+    const [carload,setCartload] = useState(false)
     const navigate = useNavigate()
+    useEffect(() => {
+      if(carload){
+        setCartload(false)
+      }
+    },[carload])
     const addToCart = () => { 
         // console.log('test')
         const token = localStorage.getItem("token");
@@ -18,8 +24,8 @@ function ProductCard(props) {
           },})
           .then((response) => {
             
-          // let datas = response.data.items.length
-          //  setCarts(response)
+          setCartload(true) 
+          
           })
           .catch((err) =>{
             console.log(err)
@@ -27,7 +33,7 @@ function ProductCard(props) {
         } else {
           navigate('/login')
         }
-
+        setCartload(true) 
     }
   return (
     <div className="bg-base-100 rounded-lg overflow-hidden shadow-lg ring-4 ring-red-500 ring-opacity-40 max-w-sm">

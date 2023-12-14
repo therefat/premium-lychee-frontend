@@ -6,7 +6,7 @@ import axios from 'axios'
 
 
 function Cart() { 
-    const {cartData,setCartData} = useContext(CartContext) 
+    const {cartData,setCartData,updateCartData } = useContext(CartContext) 
     useEffect(() =>{
    
       
@@ -23,6 +23,7 @@ function Cart() {
       ) 
       .then(ress => {
           console.log(ress)
+          updateCartData([])
       }) 
       .catch(errr => {
           console.log(errr)

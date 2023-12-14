@@ -20,9 +20,12 @@ const CartProvider = ({children}) => {
               console.log(err)
             })
        }
-    },[]) 
+    },[cartData]) 
+    const updateCartData = newData => {
+      setCartData(newData);
+    };
    
-    return <CartContext.Provider value={{cartData,setCartData}}> 
+    return <CartContext.Provider value={{cartData,setCartData,updateCartData}}> 
             {children}
          </CartContext.Provider>
 } 
