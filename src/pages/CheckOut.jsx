@@ -44,6 +44,10 @@ function CheckOut() {
                     <div>
                     <label htmlFor="phon"></label>
                     <input className='border w-full border-gray-500 outline-none focus:ring-blue-500 focus:border-blue-500 rounded-lg bg-white  text-sm font-medium p-4' type="text" name='zip' placeholder='Zip' />
+                    </div> 
+                    <div>
+                    <label htmlFor="phon"></label>
+                    <textarea rows="4" cols="50" className='border w-full border-gray-500 outline-none focus:ring-blue-500 focus:border-blue-500 rounded-lg bg-white  text-sm font-medium p-4' type="text" name='note' placeholder='Order Note' />
                     </div>
                     </div>
 

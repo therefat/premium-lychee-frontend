@@ -21,6 +21,8 @@ import UpdateProduct from "./pages/Product/UpdateProduct";
 import CartProvider from "./contex/CartContext";
 import Cart from "./pages/Cart";
 import CheckOut from "./pages/CheckOut";
+import AddAddress from "./pages/dashboard/AddAddress";
+import NewAdd from "./pages/dashboard/NewAdd";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -52,7 +54,8 @@ function App() {
           </Route> 
           <Route path="/lychee/:name" element={<ProductBuy/>}></Route> 
           <Route path="/checkout" element={<CheckOut/>}></Route>
-          <Route path="/cart" element={<Cart/>}> </Route>
+          <Route path="/cart" element={<Cart/>}> </Route> 
+          <Route path="/addaddress" element={<AddAddress></AddAddress>}></Route>
           
         </Routes> 
         </CartProvider>

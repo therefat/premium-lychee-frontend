@@ -20,7 +20,9 @@ function DashboardLayout({ children }) {
     <div className="col-span-2 p-6">
          <Link to={'/user/dashboard'} className={`mx-4 p-2 ${window.location.pathname === '/user/dashboard' ? 'bg-primary text-white' : 'bg-blue-400'} rounded-lg flex w-100 justify-center mb-4`}>Dashboard</Link>
         {userData?.data?.role == 'admin' && <Link to={'/user/addproduct'} className={`mx-4 p-2 ${window.location.pathname === '/user/addproduct' ? 'bg-primary text-white' : 'bg-blue-400'} rounded-lg flex w-100 justify-center mb-4`}>Add Product</Link> } 
-        <Link to={'/user/productlist'} className={`mx-4 p-2 ${window.location.pathname === '/user/productlist' ? 'bg-primary text-white' : 'bg-blue-400'} rounded-lg flex w-100 justify-center mb-4`}>All Product</Link>
+        <Link to={'/user/productlist'} className={`mx-4 p-2 ${window.location.pathname === '/user/productlist' ? 'bg-primary text-white' : 'bg-blue-400'} rounded-lg flex w-100 justify-center mb-4`}>All Product</Link> 
+
+        <Link to={'/addaddress'} className={`mx-4 p-2 ${window.location.pathname === 'addaddress' ? 'bg-primary text-white' : 'bg-blue-400'} rounded-lg flex w-100 justify-center mb-4`}>Add Address</Link>
     </div>
 
     <div className="col-span-4 p-6">

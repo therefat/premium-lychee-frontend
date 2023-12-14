@@ -1,10 +1,12 @@
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { CartContext } from '../contex/CartContext'
 
 function ProductCard(props) {
     const  {item} = props 
-    const [carload,setCartload] = useState(false)
+    const [carload,setCartload] = useState(false) 
+    const {updateCartData} = useContext(CartContext)
     const navigate = useNavigate()
     useEffect(() => {
       if(carload){
@@ -24,7 +26,7 @@ function ProductCard(props) {
           },})
           .then((response) => {
             
-          setCartload(true) 
+          updateCartData([])
           
           })
           .catch((err) =>{
