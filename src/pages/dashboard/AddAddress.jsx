@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Layout from '../../layout/Layout'
 import axios from 'axios'
+import DashboardLayout from '../../layout/DashboardLayout'
 
 function AddAddress() { 
     const [name,setName] = useState('') 
@@ -24,7 +25,8 @@ function AddAddress() {
       isDefault: defaultValue
     }
     const sumbitAddress = (e) => { 
-      const token = localStorage.getItem('token')
+      const token = localStorage.getItem('token') 
+      console.log(addObj)
       e.preventDefault(); 
       axios.post('address/addaddress',addObj,{
         headers : {
@@ -42,6 +44,7 @@ function AddAddress() {
   return (
    
         <Layout> 
+          <DashboardLayout>
             <h1>This is Add To Address Page</h1>
             <form method='post' onSubmit={(e) => sumbitAddress(e)}>
                     <div className='mb-4'>
@@ -99,7 +102,8 @@ function AddAddress() {
                 Add Address
               </button>
 
-                </form>
+                </form> 
+                </DashboardLayout>
         </Layout>
         
     

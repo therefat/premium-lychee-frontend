@@ -23,6 +23,8 @@ import Cart from "./pages/Cart";
 import CheckOut from "./pages/CheckOut";
 import AddAddress from "./pages/dashboard/AddAddress";
 import NewAdd from "./pages/dashboard/NewAdd";
+import AddressBook from "./pages/dashboard/AddressBook";
+import EditAddress from "./pages/dashboard/EditAddress";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -37,11 +39,13 @@ function App() {
           <Route exact path="/" element={<Home />}></Route>
           <Route exact path="/signup" element={<SignUp />}></Route>
           <Route exact path="/login" element={<Login />}></Route>
-
+          <Route path="/user/updateaddress/:id" element={<EditAddress/>}></Route>
           <Route path="/*" element={<PrivetOulet></PrivetOulet>}>
             <Route path="product" element={<Product />}></Route>
-            <Route path="user/dashboard" element={<Dashboard />}></Route>
-           
+            <Route path="user/dashboard" element={<Dashboard />}></Route> 
+            <Route path="user/addaddress" element={<AddAddress></AddAddress>}></Route>
+            <Route path="user/addressbook" element={<AddressBook/>}></Route>
+            
             <Route path="item/:id" element={<UpdateProduct/>}></Route>
             <Route path="user/*" element={<AdminOutlet />}>
           

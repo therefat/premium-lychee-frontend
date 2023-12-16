@@ -7,9 +7,9 @@ function DashboardLayout({ children }) {
 
 
     const { userData,isLoggedIn } = useContext(UserContext);
-    console.log(isLoggedIn)
+    
     const navigate = useNavigate();
-        console.log(userData)
+       
     let isLoaded = 0;
     
    
@@ -21,8 +21,9 @@ function DashboardLayout({ children }) {
          <Link to={'/user/dashboard'} className={`mx-4 p-2 ${window.location.pathname === '/user/dashboard' ? 'bg-primary text-white' : 'bg-blue-400'} rounded-lg flex w-100 justify-center mb-4`}>Dashboard</Link>
         {userData?.data?.role == 'admin' && <Link to={'/user/addproduct'} className={`mx-4 p-2 ${window.location.pathname === '/user/addproduct' ? 'bg-primary text-white' : 'bg-blue-400'} rounded-lg flex w-100 justify-center mb-4`}>Add Product</Link> } 
         <Link to={'/user/productlist'} className={`mx-4 p-2 ${window.location.pathname === '/user/productlist' ? 'bg-primary text-white' : 'bg-blue-400'} rounded-lg flex w-100 justify-center mb-4`}>All Product</Link> 
-
-        <Link to={'/addaddress'} className={`mx-4 p-2 ${window.location.pathname === 'addaddress' ? 'bg-primary text-white' : 'bg-blue-400'} rounded-lg flex w-100 justify-center mb-4`}>Add Address</Link>
+        
+       
+        <Link to={'/user/addressbook'} className={`mx-4 p-2 ${window.location.pathname === '/user/addressbook' ? 'bg-primary text-white' : 'bg-blue-400'} rounded-lg flex w-100 justify-center mb-4`}>Address Book</Link>
     </div>
 
     <div className="col-span-4 p-6">
