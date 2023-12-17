@@ -1,18 +1,107 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Layout from '../layout/Layout'
 import { CartContext } from '../contex/CartContext'
+import axios from 'axios'
+import { jwtDecode } from 'jwt-decode'
 
 function CheckOut() { 
-   const {cartData} = useContext(CartContext)
-   console.log(cartData)
+   const {cartData} = useContext(CartContext) 
+   const [defaultAddress,setDefaultAddress] = useState()
+   const [orderNote,setOrdernote] = useState('')
+   const token = localStorage.getItem('token')
+   console.log(token)
+   const userInfo = jwtDecode(token) 
+   console.log(userInfo)
+   useEffect(() => {
+    axios.get('address/defultaddress',{
+      headers : {
+        Authorization : token
+      }
+    })  
+    .then((response) => {
+      setDefaultAddress(response.data)
+    }) 
+    .catch((error) => {
+      console.log(error)
+    })
+    // axios.get('order/corder',{
+    //   headers : {
+    //     Authorization : token
+    //   }
+    // }) 
+    // .then((resp) => {
+    //   console.log(resp)
+    // }) 
+    // .catch((error) => {
+    //   console.log(error)
+    // })
+   },[]) 
+   
+   console.log(cartData) 
+   const checkoutOrder = (e) => {
+    const token = localStorage.getItem('token')
+    e.preventDefault(); 
+    let orderData = {
+     
+      
+    } 
+    console.log(token)
+    axios.post('order/newoders',{
+      user : {
+        name : userInfo.data.name,
+        email : userInfo.data.email
+      }, 
+      shippingDetails :defaultAddress,
+      orderItems: cartData?.items, 
+      orderNote : orderNote,
+      subTottal : cartData?.bill,
+      shippingCost : 120,
+      bill : Number(cartData?.bill)+Number(120)
+    },{
+      headers : {
+        Authorization : token
+      }
+    }) 
+    .then(response => {
+      console.log(response)
+    })
+    .catch(error => {
+      console.log(error)
+    })
+   }
   return (
     <Layout>
          <div className='container mx-auto'>
         <div className='grid grid-cols-2 gap-4'>
             <div>
-                <h1>Shiping information</h1>
-                <form action="">
-                    <div className='mb-4'>
+                <h1>Shiping information</h1> 
+               
+                <form method='post' onSubmit={(e) => checkoutOrder(e)}>
+
+                {defaultAddress  ? 
+                (
+                  <div className="bg-white address_div mt-5 h-min border rounded ">
+                  <div className="grid sm:grid-cols-1 md:grid-cols-12 lg:grid-cols-12 h-full p-8 saveAddDiv">
+                      <div className="col-span-4 p-1 nameAdd">
+                          <p className=''>{defaultAddress.name}</p>
+                          <p>{defaultAddress.phone}</p>
+                          <p>{defaultAddress.email}</p>
+                      </div>
+                      <div className="col-span-4  p-1 areaAdd">
+                          <p>{defaultAddress.address}</p>
+                          <h5 className='mt-2 '><b>
+                              <small className="bg-gray-800 text-white text-sm p-1 rounded-md">Default Address</small>
+                         </b></h5>
+                      </div>
+                      <div className="col-span-4 p-1 parmADD">
+                          <p>{defaultAddress.area && defaultAddress.area}</p>
+                          <p>{defaultAddress.shipping_id === '1' ? "Inside Dhaka" : "Outside Dhaka"}</p>
+                          <p>{defaultAddress.zip && defaultAddress.zip}</p></div>
+                  </div>
+              </div>
+              ) : (
+                <>
+                <div className='mb-4'>
                     
                     <input className='border w-full border-gray-500 outline-none focus:ring-blue-500 focus:border-blue-500 rounded-lg bg-white  text-sm font-medium p-4' required placeholder='Full Name' type="text" name='name' />
                     </div>
@@ -45,11 +134,15 @@ function CheckOut() {
                     <label htmlFor="phon"></label>
                     <input className='border w-full border-gray-500 outline-none focus:ring-blue-500 focus:border-blue-500 rounded-lg bg-white  text-sm font-medium p-4' type="text" name='zip' placeholder='Zip' />
                     </div> 
+                    
+                    </div>
+                </>
+              )}
                     <div>
-                    <label htmlFor="phon"></label>
-                    <textarea rows="4" cols="50" className='border w-full border-gray-500 outline-none focus:ring-blue-500 focus:border-blue-500 rounded-lg bg-white  text-sm font-medium p-4' type="text" name='note' placeholder='Order Note' />
-                    </div>
-                    </div>
+                    
+                    <textarea rows="4" cols="50" className='border w-full border-gray-500 outline-none focus:ring-blue-500 focus:border-blue-500 rounded-lg bg-white  text-sm font-medium p-4' type="text" name='note' placeholder='Order Note' value={orderNote} onChange={(e) => setOrdernote(e.target.value)} />
+                    </div> 
+                    <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
 
                 </form>
             </div>

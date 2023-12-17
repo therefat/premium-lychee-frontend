@@ -25,6 +25,8 @@ import AddAddress from "./pages/dashboard/AddAddress";
 import NewAdd from "./pages/dashboard/NewAdd";
 import AddressBook from "./pages/dashboard/AddressBook";
 import EditAddress from "./pages/dashboard/EditAddress";
+import OrderList from "./pages/dashboard/order/OrderList";
+import OrderProvider from "./contex/OrderContext";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -33,7 +35,8 @@ function App() {
   return (
     <>
       <UserProvider> 
-        <CartProvider>
+        <CartProvider> 
+        <OrderProvider>
         <Routes>
         <Route path="*" element={<NotFound />} />
           <Route exact path="/" element={<Home />}></Route>
@@ -45,6 +48,7 @@ function App() {
             <Route path="user/dashboard" element={<Dashboard />}></Route> 
             <Route path="user/addaddress" element={<AddAddress></AddAddress>}></Route>
             <Route path="user/addressbook" element={<AddressBook/>}></Route>
+            <Route path="user/orderlist" element={<OrderList/>}></Route>
             
             <Route path="item/:id" element={<UpdateProduct/>}></Route>
             <Route path="user/*" element={<AdminOutlet />}>
@@ -62,6 +66,7 @@ function App() {
           <Route path="/addaddress" element={<AddAddress></AddAddress>}></Route>
           
         </Routes> 
+        </OrderProvider>
         </CartProvider>
       </UserProvider>
     </>

@@ -2,8 +2,10 @@ import React, { useState } from 'react'
 import Layout from '../../layout/Layout'
 import axios from 'axios'
 import DashboardLayout from '../../layout/DashboardLayout'
+import { useNavigate } from 'react-router-dom'
 
 function AddAddress() { 
+  const navigate = useNavigate()
     const [name,setName] = useState('') 
     const [email,setEmail] = useState('') 
     const [phone,setPhone] = useState('') 
@@ -21,7 +23,7 @@ function AddAddress() {
       upzila: upzila,
       address : address,
       zip : zip,
-      orderNote : orderNote, 
+      
       isDefault: defaultValue
     }
     const sumbitAddress = (e) => { 
@@ -39,7 +41,8 @@ function AddAddress() {
       }) 
       .catch(error => {
         console.log(error)
-      })
+      }) 
+      navigate('/user/addressbook')
     }
   return (
    
@@ -80,10 +83,7 @@ function AddAddress() {
                     <label htmlFor="phon"></label>
                     <input className='border w-full border-gray-500 outline-none focus:ring-blue-500 focus:border-blue-500 rounded-lg bg-white  text-sm font-medium p-4' type="text" name='zip' value={zip} onChange={(e) => setZip(e.target.value)} placeholder='Zip' />
                     </div> 
-                    <div>
-                    <label htmlFor="phon"></label>
-                    <textarea rows="4" cols="50" className='border w-full border-gray-500 outline-none focus:ring-blue-500 focus:border-blue-500 rounded-lg bg-white  text-sm font-medium p-4' type="text" name='note' value={orderNote} onChange={(e) => setOrderNote(e.target.value)} placeholder='Order Note' />
-                    </div> 
+                   
                     
                     </div> 
                     

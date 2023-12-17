@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../../layout/Layout";
 import DashboardLayout from "../../layout/DashboardLayout";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
 function EditAddress() { 
-    const {id} = useParams()
+    const {id} = useParams() 
+    const navigate = useNavigate()
     const [name,setName] = useState('') 
     const [email,setEmail] = useState('') 
     const [phone,setPhone] = useState('') 
@@ -14,7 +15,7 @@ function EditAddress() {
     let [defaultValue, setDefault] = useState(false);
     const [address,setAddress] = useState('') 
     const [zip,setZip] = useState('')
-    const [orderNote,setOrderNote] = useState('')  
+    
     const [singleAddress,setSingleAddress] = useState([])
     useEffect(() => {
         const token = localStorage.getItem('token')
@@ -34,7 +35,7 @@ function EditAddress() {
             setDefault(response?.data?.isDefault) 
             setAddress(response?.data?.address) 
             setZip(response?.data?.zip) 
-            setOrderNote(response?.data?.orderNote)
+           
             
         }) 
         .catch(error => {
@@ -50,7 +51,7 @@ function EditAddress() {
       upzila: upzila,
       address : address,
       zip : zip,
-      orderNote : orderNote, 
+      
       isDefault: defaultValue
     }
     const updateAddress = (e) => {
@@ -66,7 +67,8 @@ function EditAddress() {
       }) 
       .catch(error => {
         console.log(error)
-      })
+      }) 
+      navigate('/user/addressbook')
     }
   return (
     <Layout>
@@ -152,19 +154,7 @@ function EditAddress() {
                 placeholder="Zip"
               />
             </div>
-            <div>
-              <label htmlFor="phon"></label>
-              <textarea
-                rows="4"
-                cols="50"
-                className="border w-full border-gray-500 outline-none focus:ring-blue-500 focus:border-blue-500 rounded-lg bg-white  text-sm font-medium p-4"
-                type="text"
-                name="note"
-                value={orderNote}
-                onChange={(e) => setOrderNote(e.target.value)}
-                placeholder="Order Note"
-              />
-            </div>
+            
           </div>
 
           <div className=" mb-4">
@@ -185,7 +175,7 @@ function EditAddress() {
             </div>
           </div>
           <button type="submit"  className="bg-gray-900 p-3  text-white rounded">
-            Add Address
+            Update Address
           </button>
         </form>
       </DashboardLayout>
