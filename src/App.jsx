@@ -27,6 +27,7 @@ import AddressBook from "./pages/dashboard/AddressBook";
 import EditAddress from "./pages/dashboard/EditAddress";
 import OrderList from "./pages/dashboard/order/OrderList";
 import OrderProvider from "./contex/OrderContext";
+import OrderSummery from "./pages/dashboard/order/OrderSummery";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -48,7 +49,8 @@ function App() {
             <Route path="user/dashboard" element={<Dashboard />}></Route> 
             <Route path="user/addaddress" element={<AddAddress></AddAddress>}></Route>
             <Route path="user/addressbook" element={<AddressBook/>}></Route>
-            <Route path="user/orderlist" element={<OrderList/>}></Route>
+            <Route path="user/orderlist" element={<OrderList/>}></Route> 
+            <Route path="order/ordersummery/:id" element={<OrderSummery/>}></Route>
             
             <Route path="item/:id" element={<UpdateProduct/>}></Route>
             <Route path="user/*" element={<AdminOutlet />}>

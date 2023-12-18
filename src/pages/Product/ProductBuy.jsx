@@ -13,7 +13,7 @@ function ProductBuy() {
   console.log(name)
   useEffect(() => {
     axios
-      .get("items/singleItem/" + name)
+      .get("items/singleItem/"+ name)
       .then((response) => {
         // console.log(response)
         // setProductInfo(response.data);

@@ -23,6 +23,7 @@ const OrderProvider = ({children}) => {
        }
     },[orderData])  
     const updateOrderData = newData => {
+      console.log(newData)
         setOrderData(newData);
       };
       return <OrderContext.Provider value={{orderData,setOrderData,updateOrderData}}>

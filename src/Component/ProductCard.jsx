@@ -26,7 +26,7 @@ function ProductCard(props) {
           },})
           .then((response) => {
             
-          updateCartData([])
+          updateCartData(null)
           
           })
           .catch((err) =>{

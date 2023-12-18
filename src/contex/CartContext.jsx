@@ -22,6 +22,7 @@ const CartProvider = ({children}) => {
        }
     },[cartData]) 
     const updateCartData = newData => {
+      console.log(newData)
       setCartData(newData);
     };
    

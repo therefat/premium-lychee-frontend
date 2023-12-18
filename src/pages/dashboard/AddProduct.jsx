@@ -156,9 +156,12 @@ function AddProduct() {
                     <h3>Kilogram Variations</h3>
                     {variations.map((variation, index) => (
                       <div key={index} className="mb-3 mr-2">
-                        <label>{`Kg Variation ${index + 1}: `}</label>
+                        <label>{` Variation ${index + 1}: `}</label>
+                        <div className="mb-3 flex flex-col gap-1"> 
+                        <label htmlFor="">Quantity</label>
                         <input
                           type="text"
+                          placeholder="Enter Quantity"
                           className="border h-8 rounded-lg border-gray-900"
                           value={variation.attribute_quantity}
                           onChange={(e) =>
@@ -168,8 +171,10 @@ function AddProduct() {
                               variation.attribute_price
                             )
                           }
-                        />
-
+                        /> 
+                        </div>
+                        <div className="mb-3 flex flex-col gap-1"> 
+                        <label htmlFor="">Quantity</label>
                         <input
                           type="number"
                           className="border h-8 rounded-lg border-gray-900"
@@ -181,13 +186,53 @@ function AddProduct() {
                               e.target.value
                             )
                           }
-                        />
+                        /> 
+                        </div>
                       </div>
                     ))}
-                    <p onClick={addVariation}>Add varient</p>
+                    <p className="bg-primary p-3 inline-block text-white rounded" onClick={addVariation}>Add varient</p>
                   </div>
                 ) : (
-                  <h1>gf</h1>
+                  <div>
+                    <h3>Pices Variations</h3>
+                    {variations.map((variation, index) => (
+                      <div key={index} className="mb-3 mr-2">
+                        <label>{`Variation ${index + 1}: `}</label>
+                        <div className="mb-3 flex flex-col gap-1"> 
+                        <label htmlFor="">Quantity</label>
+                        <input
+                          type="text"
+                          placeholder="Enter Quantity"
+                          className="border h-8 rounded-lg border-gray-900"
+                          value={variation.attribute_quantity}
+                          onChange={(e) =>
+                            handleVariationChange(
+                              index,
+                              e.target.value,
+                              variation.attribute_price
+                            )
+                          }
+                        /> 
+                        </div>
+                        <div className="mb-3 flex flex-col gap-1"> 
+                        <label htmlFor="">Quantity</label>
+                        <input
+                          type="number"
+                          className="border h-8 rounded-lg border-gray-900"
+                          value={variation.attribute_price}
+                          onChange={(e) =>
+                            handleVariationChange(
+                              index,
+                              variation.attribute_quantity,
+                              e.target.value
+                            )
+                          }
+                        /> 
+                        </div>
+                      </div>
+                    ))}
+                    <p className="bg-primary p-3 inline-block text-white rounded" onClick={addVariation}>Add varient</p>
+                  </div>
                 )}
                 <br />
               </div>
@@ -196,7 +241,7 @@ function AddProduct() {
                 type="submit"
                 className="bg-gray-900 p-3  text-white rounded"
               >
-                {formBtn === "add" ? "Add Product" : "Update"}
+                Add Product
               </button>
             </form>
           </div>

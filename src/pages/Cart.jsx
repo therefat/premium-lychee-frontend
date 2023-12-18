@@ -23,7 +23,7 @@ function Cart() {
       ) 
       .then(ress => {
           console.log(ress)
-          updateCartData([])
+          updateCartData(null)
       }) 
       .catch(errr => {
           console.log(errr)
@@ -33,7 +33,10 @@ function Cart() {
   return (
     <Layout>
         <div className='container mx-auto mt-5'>
-        <table className=" min-w-full divide-y divide-gray-200 table-fixed dark:divide-gray-700">
+        {
+          cartData && cartData ? (
+            <>
+            <table className=" min-w-full divide-y divide-gray-200 table-fixed dark:divide-gray-700">
               <thead className="bg-base-300">
                 <tr>
                   <th
@@ -130,6 +133,11 @@ function Cart() {
               </tbody>
             </table>
             <div className='grid mt-5 items-center'><Link to={'/checkout'} className=" w-48 p-4 bg-primary text-white rounded-lg hover:bg-slate-500">Checkout</Link></div>
+            </>
+          ) :  (<>
+            <h1>Card Is Empty</h1>
+          </>)
+        }
         </div>
 
 

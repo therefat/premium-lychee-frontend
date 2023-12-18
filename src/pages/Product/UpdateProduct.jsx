@@ -16,7 +16,7 @@ function UpdateProduct() {
   const [price, setPrice] = useState("");
   const [image, setImagess] = useState("");
  
-  const [type, setType] = useState('kg');
+  const [type, setType] = useState('');
  
   const [variations, setVariations] = useState([]);
  
@@ -51,6 +51,7 @@ function UpdateProduct() {
           setCategory(response.data?.item?.category) 
           setPrice(response.data?.item?.price) 
           setImagess(response.data?.item?.image) 
+          setType(response.data?.item?.attributeType)
           setVariations(response.data?.item?.attributes)
           setItemData(response.data.item)
           
@@ -181,19 +182,23 @@ console.log(name)
             <div className="mb-3 flex flex-col gap-1">
               <label htmlFor="">Qunt</label>
                <select value={type} onChange={(e) => setType(e.target.value)}>
+               <option value="">Select Option</option>
           <option value="kg">KG</option>
           <option value="pieces">Pieces</option>
         </select> 
         <br /> 
 
-         {type === "kg" ? (
+        {type === "kg" ? (
                   <div>
                     <h3>Kilogram Variations</h3>
-                    { variations?.map((variation, index) => (
+                    {variations.map((variation, index) => (
                       <div key={index} className="mb-3 mr-2">
-                        <label>{`Kg Variation ${index + 1}: `}</label>
+                        <label>{` Variation ${index + 1}: `}</label>
+                        <div className="mb-3 flex flex-col gap-1"> 
+                        <label htmlFor="">Quantity</label>
                         <input
                           type="text"
+                          placeholder="Enter Quantity"
                           className="border h-8 rounded-lg border-gray-900"
                           value={variation.attribute_quantity}
                           onChange={(e) =>
@@ -203,8 +208,10 @@ console.log(name)
                               variation.attribute_price
                             )
                           }
-                        />
-
+                        /> 
+                        </div>
+                        <div className="mb-3 flex flex-col gap-1"> 
+                        <label htmlFor="">Quantity</label>
                         <input
                           type="number"
                           className="border h-8 rounded-lg border-gray-900"
@@ -216,19 +223,23 @@ console.log(name)
                               e.target.value
                             )
                           }
-                        />
+                        /> 
+                        </div>
                       </div>
                     ))}
-                    <p onClick={addVariation}>Add varient</p>
+                    <p className="bg-primary p-3 inline-block text-white rounded" onClick={addVariation}>Add varient</p>
                   </div>
                 ) : (
                   <div>
-                    <h3>Kilogram Variations</h3>
-                    {variations?.map((variation, index) => (
+                    <h3>Pices Variations</h3>
+                    {variations.map((variation, index) => (
                       <div key={index} className="mb-3 mr-2">
-                        <label>{`Kg Variation ${index + 1}: `}</label>
+                        <label>{`Variation ${index + 1}: `}</label>
+                        <div className="mb-3 flex flex-col gap-1"> 
+                        <label htmlFor="">Quantity</label>
                         <input
                           type="text"
+                          placeholder="Enter Quantity"
                           className="border h-8 rounded-lg border-gray-900"
                           value={variation.attribute_quantity}
                           onChange={(e) =>
@@ -238,8 +249,10 @@ console.log(name)
                               variation.attribute_price
                             )
                           }
-                        />
-
+                        /> 
+                        </div>
+                        <div className="mb-3 flex flex-col gap-1"> 
+                        <label htmlFor="">Quantity</label>
                         <input
                           type="number"
                           className="border h-8 rounded-lg border-gray-900"
@@ -251,12 +264,13 @@ console.log(name)
                               e.target.value
                             )
                           }
-                        />
+                        /> 
+                        </div>
                       </div>
                     ))}
-                    <p onClick={addVariation}>Add varient</p>
+                    <p className="bg-primary p-3 inline-block text-white rounded" onClick={addVariation}>Add varient</p>
                   </div>
-                )} 
+                )}
           <br />
             
             </div> 
