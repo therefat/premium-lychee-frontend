@@ -1,12 +1,26 @@
-import React, { useContext } from 'react'
+import React, { useEffect, useState } from 'react'
 import Layout from '../../../layout/Layout'
 import DashboardLayout from '../../../layout/DashboardLayout'
-import { OrderContext } from '../../../contex/OrderContext'
+import axios from 'axios'
 import { Link } from 'react-router-dom'
 
-function OrderList() {
-    const {orderData} = useContext(OrderContext) 
-    // console.log(orderData)
+function AllOrder() { 
+  const token = localStorage.getItem('token')
+  const [orderData,setOrderData] = useState()
+  useEffect(() => {
+    axios.get('order/allorder',{
+      headers : {
+        Authorization : token
+      }
+    })
+    .then((res) => {
+      setOrderData(res.data)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+  },[])
+  console.log(orderData)
   return (
     <>
     <Layout>
@@ -75,4 +89,4 @@ function OrderList() {
   )
 }
 
-export default OrderList
+export default AllOrder

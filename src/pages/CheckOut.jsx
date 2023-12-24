@@ -9,8 +9,12 @@ function CheckOut() {
   const { cartData } = useContext(CartContext);
   const { updateOrderData } = useContext(OrderContext);
   const [defaultAddress, setDefaultAddress] = useState();
+  
   const [orderNote, setOrdernote] = useState("");
-  const token = localStorage.getItem("token");
+  const [paymentMethod,setPaymentMethod] = useState()
+  const [accountNo,setAccountNo] = useState()
+  const token = localStorage.getItem("token"); 
+  const [transactionid,setTransactionID] = useState('')
   console.log(token);
   const userInfo = jwtDecode(token);
   console.log(cartData);
@@ -34,7 +38,7 @@ function CheckOut() {
     const token = localStorage.getItem("token");
     e.preventDefault();
     let orderData = {};
-    console.log(token);
+    
     axios
       .post(
         "order/newoders",
@@ -49,6 +53,12 @@ function CheckOut() {
           subTottal: cartData?.bill,
           shippingCost: 120,
           bill: Number(cartData?.bill) + Number(120),
+          
+          paymentInfo : {
+            paymentMethod : paymentMethod,
+            transactionid : transactionid,
+            accountNo : accountNo,
+          }
         },
         {
           headers: {
@@ -64,6 +74,7 @@ function CheckOut() {
         console.log(error);
       });
   };
+  console.log(paymentMethod)
   return (
     <Layout>
       <div className="container mx-auto">
@@ -224,7 +235,7 @@ function CheckOut() {
                 </div>
 
                 <div>
-                  <div className="flex flex-col mr-7 items-end">
+                  <div className="flex flex-col mr-7 ">
                     <div className="my-4">
                       <h1 className="text-xl">Payment Method : </h1>
                       <div>
@@ -232,7 +243,9 @@ function CheckOut() {
                         <input
                           className="border  border-gray-500 outline-none focus:ring-blue-500 focus:border-blue-500 rounded-lg bg-white  text-sm font-medium p-4"
                           type="radio"
-                          name="bkash"
+                          name="payment" 
+                          value={'bkash'} 
+                          onClick={(e) => setPaymentMethod(e.target.value)}
                           
                         /> 
                         <label htmlFor="bkash">Bkash</label>
@@ -242,8 +255,10 @@ function CheckOut() {
                       <input
                           className="border  border-gray-500 outline-none focus:ring-blue-500 focus:border-blue-500 rounded-lg bg-white  text-sm font-medium p-4"
                           type="radio"
-                          name="zip"
-                          placeholder="Zip"
+                          name="payment" 
+                          value={'nogod'} 
+                          onClick={(e) => setPaymentMethod(e.target.value)}
+                          
                         /> 
                         <label htmlFor="nogod">Nogod</label>
                       
@@ -252,11 +267,35 @@ function CheckOut() {
                       <input
                           className="border  border-gray-500 outline-none focus:ring-blue-500 focus:border-blue-500 rounded-lg bg-white  text-sm font-medium p-4"
                           type="radio"
-                          name="zip"
+                          name="payment"
                           placeholder="Zip"
+                          value={'rocket'} 
+                          onClick={(e) => setPaymentMethod(e.target.value)}
                         /> 
                         <label htmlFor="rocket">Rocket</label>
-                      </div>
+                      </div> 
+                      <div className="flex flex-col w-48">
+                      <label htmlFor="transactionid">Account No :</label>
+                      <input
+                        className="border  border-gray-500 outline-none focus:ring-blue-500 focus:border-blue-500 rounded-lg bg-white  text-sm font-medium p-4"
+                        type="text"
+                        name="accountno" 
+                        value={accountNo}
+                        onChange={(e) => setAccountNo(e.target.value)}
+                        placeholder="Account No"
+                      />
+                    </div>
+                      <div className="flex flex-col w-48">
+                      <label htmlFor="transactionid">Transaction Id:</label>
+                      <input
+                        className="border  border-gray-500 outline-none focus:ring-blue-500 focus:border-blue-500 rounded-lg bg-white  text-sm font-medium p-4"
+                        type="text"
+                        name="transactionid" 
+                        value={transactionid}
+                        onChange={(e) => setTransactionID(e.target.value)}
+                        placeholder="Transaction Id"
+                      />
+                    </div>
 
                     </div>
 
