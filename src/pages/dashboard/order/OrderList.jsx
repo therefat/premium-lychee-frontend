@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 
 function OrderList() {
     const {orderData} = useContext(OrderContext) 
-    // console.log(orderData)
+    
   return (
     <>
     <Layout>

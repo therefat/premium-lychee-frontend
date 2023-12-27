@@ -2,26 +2,56 @@ import React, { useEffect, useState } from 'react'
 import Layout from '../../../layout/Layout'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
+import { jwtDecode } from 'jwt-decode'
 
 function OrderSummery() {
-    const {id} = useParams()
+     // Extract parameters from the URL
+    const {id} = useParams() 
+     // State variables to store order information and status
     const [orderInfo,setOrderInfo] = useState()
+    const [status,setOrderStatus] = useState() 
+     // Fetch order information using useEffect
     useEffect(() => {
-        const token = localStorage.getItem('token')
+        // Retrieve the token from local storage
+        const token = localStorage.getItem('token') 
+           // Make a GET request to fetch order details
         axios.get('order/singleorder/'+ id,{
       headers : {
         Authorization : token
       }
     }) 
     .then((response) => {
-        
+        // Update state with the fetched order information
       setOrderInfo(response.data)
+    
     }) 
     .catch((error) => {
       console.log(error)
-    })
+    }) 
+   
     },[])
-    console.log(orderInfo)
+   
+     // Decode the user token to get user information
+    const token = localStorage.getItem('token')
+    const userInfo = jwtDecode(token)
+    
+    // Function to update the order status
+    const updateStatus = (e) => {
+        e.preventDefault();  
+         // Make a PATCH request to update the order status
+        axios.patch('order/orderStatus/' + id,{status},{
+            headers : {
+                Authorization : token
+            }
+        })
+        .then(response => {
+            console.log(response)
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+        
+    }
   return (
     <Layout>
 
@@ -107,12 +137,7 @@ function OrderSummery() {
                                     <p className="text-base leading-4 text-gray-800">SubTotal</p>
                                     <p className="text-base leading-4 text-gray-600">{orderInfo?.subTottal}</p>
                                 </div>
-                                {/* <div className="flex justify-between items-center w-full">
-                                    <p className="text-base leading-4 text-gray-800">
-                                        Discount <span className="bg-gray-200 p-1 text-xs font-medium leading-3  text-gray-800">STUDENT</span>
-                                    </p>
-                                    <p className="text-base leading-4 text-gray-600">-$28.00 (50%)</p>
-                                </div> */}
+                               
                                 <div className="flex justify-between items-center w-full">
                                     <p className="text-base leading-4 text-gray-800">Shipping</p>
                                     <p className="text-base leading-4 text-gray-600">{orderInfo?.shippingCost}</p>
@@ -184,12 +209,28 @@ function OrderSummery() {
                                     <p className="w-48 lg:w-full xl:w-48 text-center md:text-left text-sm leading-5 text-gray-600">180 North King Street, Northhampton MA 1060</p>
                                 </div> */}
                             </div>
-                            {/* <div className="flex w-full justify-center items-center md:justify-start md:items-start">
-                                <button className="mt-6 md:mt-0 py-5 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 border border-gray-800 font-medium w-96 2xl:w-full text-base leading-4 text-gray-800">Edit Details</button>
-                            </div> */}
+                            
                         </div>
                     </div>
                 </div>
+            </div> 
+            <div className='admin'> 
+             {/* Admin section to update order status */}
+                        {
+                            userInfo.data.role == 'admin' && <div> 
+                                <form method='PATCH' onSubmit={(e) => updateStatus(e)} >
+                                    <select value={status} onChange={(e) => setOrderStatus(e.target.value)} name="status">
+                                        <option value={"Pending"}>Pending</option>
+                                        <option value={"Approve"}>Approve</option>
+                                        <option value="Processing">Processing</option> 
+                                        <option value="Courier">Courier</option> 
+                                        <option value="Shipped">Shipped</option> 
+                                        <option value="Delivered">Delivered</option>
+                                    </select> 
+                                    <button>Update Status</button>
+                                </form>
+                                 </div>
+                        }
             </div>
         </div>
     </Layout>
