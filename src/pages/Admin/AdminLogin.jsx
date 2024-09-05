@@ -1,11 +1,13 @@
 import axios from 'axios';
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
+import { UserContext } from '../../components/context/UserContext';
 
 function AdminLogin() {
     const [email,setEmail] = useState('')
     const [password,setPassword] = useState('')
     const [error, setError] = useState(null);
+    const {userData,setUserData,updateUserData,setIsLoggedIn} = useContext(UserContext)
     console.log(error)
     const hisotoyr = useNavigate()
     const submitForm = (e) => {
@@ -19,21 +21,19 @@ function AdminLogin() {
         //   const token_decode = jwtDecode(response.data.token) 
        
          
-          localStorage.setItem('token', response.data.token);
+          localStorage.setItem('user', JSON.stringify(response.data));
           console.log(localStorage.getItem('token'));
+          updateUserData(response.data)
         // hisotoyr('/')
       //   axios.defaults.headers.common= 'Bearer' + response.data.token 
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + response.data.token;
       })
       .catch(error => {
         //   console.log(error)
-          console.log(error.response.data.message)
-          if(error.response.status == 401){
-              setError(error.response.data.message)
-          }
-          else{
-              setError(error.response.data)
-          }
+         
+         
+              setError(error.response?.data.message)
+          
           
       })
     }
