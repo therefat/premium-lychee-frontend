@@ -19,12 +19,21 @@ function AdminLogin() {
       .then(response => {
           console.log(response.data)
         //   const token_decode = jwtDecode(response.data.token) 
-       
+        var userDatas = {
+          token: response?.data?.token, 
+          id: response?.data?.admin?.id, 
+          name: response?.data?.admin?.name,
+          email: response?.data?.admin?.email,
+          role_id : response?.data?.admin?.role_id
+          
          
-          localStorage.setItem('user', JSON.stringify(response.data));
-          console.log(localStorage.getItem('token'));
+        }
+        console.log(userDatas)
+         
+          localStorage.setItem('user', JSON.stringify(userDatas));
+          // console.log(localStorage.getItem('token'));
           updateUserData(response.data)
-        // hisotoyr('/')
+        hisotoyr('/admin/dashbord')
       //   axios.defaults.headers.common= 'Bearer' + response.data.token 
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + response.data.token;
       })
