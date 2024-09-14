@@ -12,6 +12,10 @@ import AdminLogin from './pages/Admin/AdminLogin'
 import UserProvider, { UserContext } from './components/context/UserContext'
 import PrivetOulet from './components/PrivetOulet'
 import AdminOutlet from './components/context/AdminOutlet'
+import AdminDashboard from './pages/Admin/Dashboard/AdminDashboard'
+import AddProduct from './pages/Admin/Products/AddProduct'
+import Category from './pages/Admin/Category/Category'
+import AddCategory from './pages/Admin/Category/AddCategory'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -25,7 +29,10 @@ function App() {
       {/* <Route exact path='/dashboard' element={<Dashboard/>}></Route> */}
       <Route exact path='/admin-login' element={<AdminLogin/>}></Route>
       <Route exact path='/*' element={<AdminOutlet></AdminOutlet>}>
-        <Route exact path='dashbord' element={<Dashboard></Dashboard>}></Route>
+        <Route exact path='admin/dashbord' element={<AdminDashboard></AdminDashboard>}></Route>
+        <Route exact path='admin/dashboard/addProduct' element={<AddProduct></AddProduct>}></Route>
+        <Route exact path='admin/category' element={<Category/>}></Route>
+        <Route exact path='admin/addcategory' element={<AddCategory></AddCategory>}></Route>
       </Route>
     </Routes>
    </UserProvider>
