@@ -12,7 +12,7 @@ function AddProduct() {
   const [category, setCategory] = useState("");
   const [allCategory,setAllCategory] = useState([])
   const [price, setPrice] = useState("");
-  const [image, setImagess] = useState("");
+  const [image, setImagess] = useState(null);
   const [products, setProducts] = useState([]);
   const [type, setType] = useState("kg");
   const [words, setWords] = useState([]);
@@ -21,9 +21,12 @@ function AddProduct() {
   const imagSub = (e) => {
     if (e.target.files[0]) {
       const file = e.target.files[0];
+      console.log(file)
       setImagess(file);
     }
-  };
+  }; 
+  console.log(image)
+  
   const addVariation = () => {
     setVariations([...variations, { attribute_quantity: "", attribute_price: 0 }]);
     console.log(variations);
@@ -31,14 +34,21 @@ function AddProduct() {
 
   const submitProduct = (e) => {
     e.preventDefault();
+    console.log(image)
+    if(!image){
+      console.log('image not found')
+    }
     const formData = new FormData();
+    const token = JSON.parse(localStorage.getItem('user'));
     formData.append("name", name);
     formData.append("description", description);
     formData.append("category", category);
     formData.append("price", price);
     formData.append("image", image);
-    const token = localStorage.getItem("token");
-
+    formData.append("attributeType",type);
+    formData.append("attributes",variations)
+ 
+console.log(formData)
     axios
       .post(
         "item/addProduct",
@@ -53,10 +63,11 @@ function AddProduct() {
         },
         {
           headers: {
-            Authorization: token,
-            "Content-Type": "multipart/form-data",
+              Authorization: `Bearer ${token?.token}`, // Ensure your token is properly set here
+              'Content-Type': 'multipart/form-data',
           },
-        }
+          withCredentials: true  // Set this only if you're using cookies or similar credentials
+      }
       )
 
       .then((response) => {
@@ -158,7 +169,7 @@ function AddProduct() {
               </div>
               <div className="mb-3 flex flex-col gap-1">
                 <label htmlFor="proImage">Uplode Image</label>
-                <input type="file" id="" onChange={imagSub} />
+                <input name='image' type="file" id="" onChange={imagSub} />
               </div>
               <div className="mb-3 flex flex-col gap-1">
                 <label htmlFor="">Qunt</label>
