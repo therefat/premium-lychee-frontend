@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import AdminDashboardLayout from '../../layout/AdminDashboardLayout'
 import axios from 'axios';
 
@@ -10,6 +10,7 @@ function AddProduct() {
   const [showModal, setShowModal] = useState(false);
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
+  const [allCategory,setAllCategory] = useState([])
   const [price, setPrice] = useState("");
   const [image, setImagess] = useState("");
   const [products, setProducts] = useState([]);
@@ -44,7 +45,7 @@ function AddProduct() {
         {
           name: name,
           description: description,
-          category: category,
+          category_id: category,
           price: price,
           image: image,
           attributeType : type,
@@ -60,6 +61,7 @@ function AddProduct() {
 
       .then((response) => {
         console.log(response);
+       
       })
       .catch((err) => {
         console.log(err);
@@ -74,7 +76,17 @@ function AddProduct() {
     };
     setVariations(updatedVariations);
   }; 
- 
+  useEffect(() => {
+    axios.get('admin/categories')
+    .then((response) => {
+      console.log(response)
+      setAllCategory(response.data)
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+  },[])
+  console.log(allCategory)
   return (
     <AdminDashboardLayout>
      <>
@@ -113,16 +125,23 @@ function AddProduct() {
               </div>
               <div className="mb-3 flex flex-col gap-1">
                 <label htmlFor="category">Category</label>
-                <input
-                  type="text"
-                  className="border h-8 rounded-lg border-gray-900"
-                  name="category"
-                  value={category}
-                  id="category"
-                  onChange={(e) => {
-                    setCategory(e.target.value);
-                  }}
-                />
+                <select
+              id="status"
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            >
+             
+             
+              {
+                allCategory.map((item) => {
+                  return (
+                    <option value={item?.id}>{item?.name}</option>
+                  )
+                })
+              }
+             
+            </select>
               </div>
               <div className="mb-3 flex flex-col gap-1">
                 <label htmlFor="price">Price</label>
