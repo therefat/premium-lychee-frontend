@@ -16,6 +16,7 @@ import AdminDashboard from './pages/Admin/Dashboard/AdminDashboard'
 import AddProduct from './pages/Admin/Products/AddProduct'
 import Category from './pages/Admin/Category/Category'
 import AddCategory from './pages/Admin/Category/AddCategory'
+import ProductList from './pages/Admin/Products/ProductList'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -33,6 +34,7 @@ function App() {
         <Route exact path='admin/dashboard/addProduct' element={<AddProduct></AddProduct>}></Route>
         <Route exact path='admin/category' element={<Category/>}></Route>
         <Route exact path='admin/addcategory' element={<AddCategory></AddCategory>}></Route>
+        <Route exact path='admin/productlist' element={<ProductList/>}></Route>
       </Route>
     </Routes>
    </UserProvider>
