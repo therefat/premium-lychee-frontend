@@ -218,7 +218,7 @@ console.log(formData)
                         </div>
                       </div>
                     ))}
-                    <p className="bg-primary p-3 inline-block text-white rounded" onClick={addVariation}>Add varient</p>
+                    <p className="bg-green-500 p-3 inline-block text-white rounded" onClick={addVariation}>Add varient</p>
                   </div>
                 ) : (
                   <div>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import AdminDashboardLayout from '../../layout/AdminDashboardLayout'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 function ProductList() {
     const [products,setProducts] = useState()
@@ -74,13 +75,14 @@ function ProductList() {
                     {item?.price}
                 </td>
                 <td class="px-6 py-4 text-right">
-                    <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                    <Link to={`/admin/product/${item?.id}`} class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</Link>
+                    <Link to="/">this is me </Link>
                 </td>
             </tr>
             )
         })
        }
-           
+           {/* `admin/product/${item?.id}` */}
    
         </tbody>
     </table>
