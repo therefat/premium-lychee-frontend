@@ -18,6 +18,7 @@ import Category from './pages/Admin/Category/Category'
 import AddCategory from './pages/Admin/Category/AddCategory'
 import ProductList from './pages/Admin/Products/ProductList'
 import UpdateProduct from './pages/Admin/Products/UpdateProduct'
+import ProductDetails from './pages/Product/ProductDetails'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -28,6 +29,7 @@ function App() {
       <Route exact path='/' element={<Home/>}></Route>
       <Route exact path='/signup' element={<SignUp/>}></Route>
       <Route exact path='/login' element={<Login/>}></Route>
+      <Route exact path='/lychee/:name/:id' element={<ProductDetails/>}></Route>
       {/* <Route exact path='/dashboard' element={<Dashboard/>}></Route> */}
       <Route exact path='/admin-login' element={<AdminLogin/>}></Route>
       <Route exact path='/*' element={<AdminOutlet></AdminOutlet>}>
