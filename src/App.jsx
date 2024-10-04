@@ -19,17 +19,26 @@ import AddCategory from './pages/Admin/Category/AddCategory'
 import ProductList from './pages/Admin/Products/ProductList'
 import UpdateProduct from './pages/Admin/Products/UpdateProduct'
 import ProductDetails from './pages/Product/ProductDetails'
+import { CartProvider } from 'react-use-cart'
+import Cart from './pages/Cart'
 
 function App() {
   const [count, setCount] = useState(0)
   axios.defaults.baseURL = "http://127.0.0.1:8000/api/";
   return (
+    <CartProvider>
    <UserProvider>
      <Routes>
       <Route exact path='/' element={<Home/>}></Route>
       <Route exact path='/signup' element={<SignUp/>}></Route>
       <Route exact path='/login' element={<Login/>}></Route>
+
       <Route exact path='/lychee/:name/:id' element={<ProductDetails/>}></Route>
+      <Route exact path='/cart' element={<Cart/>}></Route>
+      <Route exact path='/*' element={<PrivetOulet/>}>
+      <Route exact path='user/dashboard' element={<Dashboard/>}></Route>
+
+      </Route>
       {/* <Route exact path='/dashboard' element={<Dashboard/>}></Route> */}
       <Route exact path='/admin-login' element={<AdminLogin/>}></Route>
       <Route exact path='/*' element={<AdminOutlet></AdminOutlet>}>
@@ -41,7 +50,9 @@ function App() {
         <Route exact path='admin/product/:id' element={<UpdateProduct/>}></Route>
       </Route>
     </Routes>
+   
    </UserProvider>
+   </CartProvider>
   )
 }
 

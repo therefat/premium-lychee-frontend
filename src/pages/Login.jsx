@@ -12,15 +12,24 @@ function Login() {
       e.preventDefault(e);
       axios.post('login',{
           email : email,
-          password : password
+          password : password 
       })
       .then(response => {
-          console.log(response)
-          const token_decode = jwtDecode(response.data.token) 
+          console.log(response.data)
+          var userDatas = {
+            token: response?.data?.token, 
+            id: response?.data?.id, 
+            name: response?.data?.name,
+            email: response?.data?.email,
+            
+            
+          }  
+          console.log(userDatas)
+       
        
           hisotoyr('/')
-        localStorage.setItem('token',response.data.token)
-      //   axios.defaults.headers.common= 'Bearer' + response.data.token 
+        localStorage.setItem('user', JSON.stringify(userDatas));
+      
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + response.data.token;
       })
       .catch(error => {
