@@ -1,12 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useCart } from 'react-use-cart';
 
 function ProductCard({item}) {
+    const { addItem } = useCart();
    
   return (
     <div className="bg-[#87CEEB] rounded-lg overflow-hidden shadow-lg ring-4 ring-red-500 ring-opacity-40 max-w-sm">
     <div className="relative">
-        <Link  to={'/lychee/' + item.name}>
+        <Link  to={`lychee/${item.name}/${item.id}`}>
         <img className="w-full h-[250px]" src={item.image} alt="Product Image"/>
         <div className="absolute top-0 right-0 bg-red-500 text-white px-2 py-1 m-2 rounded-md text-sm font-medium">SALE
         </div> 
@@ -19,10 +21,13 @@ function ProductCard({item}) {
         </div>
         <div className="flex items-center justify-between">
             {/*  */} 
-            <button onClick={() => addToCart(item)} className="btn btn-primary bg-blue-400 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+            <button onClick={() => {
+                console.log(item)
+                addItem(item,100)
+            }} className="btn btn-primary bg-blue-400 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
                 Add to Cart
             </button>
-            <Link  to={'/lychee/' + item.name} className="btn btn-primary bg-blue-400 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+            <Link  to={`lychee/${item.name}/${item.id}`} className="btn btn-primary bg-blue-400 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
                 Buy Now
             </Link>
         </div>

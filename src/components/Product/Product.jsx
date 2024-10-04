@@ -15,12 +15,13 @@ function Product() {
   //   })
   // })
   useEffect(() => {
-    axios.get('item/getproduct')
+    axios.get('/item/getproduct')
     .then(response => {
       setProducts(response.data.products)
+      console.log(response)
     })
     .catch(error => {
-      console.log(error)
+    console.log(error)
     })
   },[])
   console.log(products)
