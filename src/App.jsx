@@ -22,6 +22,7 @@ import ProductDetails from './pages/Product/ProductDetails'
 import { CartProvider } from 'react-use-cart'
 import Cart from './pages/Cart'
 import AddAddressBook from './pages/dashboard/AddAddressBook'
+import AddressBook from './pages/dashboard/AddressBook'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -36,8 +37,10 @@ function App() {
 
       <Route exact path='/lychee/:name/:id' element={<ProductDetails/>}></Route>
       <Route exact path='/cart' element={<Cart/>}></Route>
+      //user auth route
       <Route exact path='/*' element={<PrivetOulet/>}>
-      <Route exact path='user/addressbook' element={<AddAddressBook/>}></Route>
+      <Route exact path='user/addressbook' element={<AddressBook/>}></Route>
+      <Route exact path='user/addaddress' element={<AddAddressBook/>}></Route>
       <Route exact path='user/dashboard' element={<Dashboard/>}></Route>
 
       </Route>
