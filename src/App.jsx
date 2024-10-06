@@ -23,6 +23,7 @@ import { CartProvider } from 'react-use-cart'
 import Cart from './pages/Cart'
 import AddAddressBook from './pages/dashboard/AddAddressBook'
 import AddressBook from './pages/dashboard/AddressBook'
+import UpdateAddress from './pages/dashboard/UpdateAddress'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -42,6 +43,7 @@ function App() {
       <Route exact path='user/addressbook' element={<AddressBook/>}></Route>
       <Route exact path='user/addaddress' element={<AddAddressBook/>}></Route>
       <Route exact path='user/dashboard' element={<Dashboard/>}></Route>
+      <Route exact path='user/updateaddress/:id' element={<UpdateAddress/>}></Route>
 
       </Route>
       {/* <Route exact path='/dashboard' element={<Dashboard/>}></Route> */}

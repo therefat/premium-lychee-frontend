@@ -43,7 +43,7 @@ function AddAddressBook() {
         .catch(error => {
           console.log(error)
         }) 
-        // navigate('/user/addressbook')
+        navigate('/user/addressbook')
       }
   return (
     <Layout>
@@ -89,7 +89,7 @@ function AddAddressBook() {
                     
                     <div className=" mb-4">
                                 <div className="">
-                                    <input type="checkbox" name="is_default" value={true} id="is_default" onClick={(e) => setDefault(!defaultValue)} className="form-check-input" />{" "}
+                                    <input type="checkbox" name="is_default" value={false} id="is_default" onClick={(e) => setDefault(!defaultValue)} className="form-check-input" />{" "}
                                     <label htmlFor="is_default" className="">
                                         <span>Use this address as default.</span>
                                     </label>
