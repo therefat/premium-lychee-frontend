@@ -6,11 +6,13 @@ function PrivetOulet() {
     const {isLoggedIn,userData,setIsLoggedIn} = useContext(UserContext);
    
     
-    const tokkes = localStorage.getItem('user')
-    if (!tokkes) {
-        return <Navigate to={'/login'} />;
+    const token = JSON.parse(localStorage.getItem('user'))
+    const role = token.role
+    console.log(token?.token)
+    if (token && (role=== 'user')) {
+        return  <Outlet></Outlet> ;
       }
-      return  <Outlet></Outlet> 
+      return  <Navigate to={'/login'} />
       
 }
 

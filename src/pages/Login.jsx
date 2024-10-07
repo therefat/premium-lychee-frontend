@@ -21,7 +21,7 @@ function Login() {
             id: response?.data?.id, 
             name: response?.data?.name,
             email: response?.data?.email,
-            
+            role : response?.data?.role
             
           }  
           console.log(userDatas)

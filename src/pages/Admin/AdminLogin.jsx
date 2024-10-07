@@ -8,7 +8,7 @@ function AdminLogin() {
     const [password,setPassword] = useState('')
     const [error, setError] = useState(null);
     const {userData,setUserData,updateUserData,setIsLoggedIn} = useContext(UserContext)
-    console.log(error)
+ 
     const hisotoyr = useNavigate()
     const submitForm = (e) => {
       e.preventDefault(e);
@@ -17,8 +17,7 @@ function AdminLogin() {
           password : password
       })
       .then(response => {
-          console.log(response.data)
-        //   const token_decode = jwtDecode(response.data.token) 
+         
         var userDatas = {
           token: response?.data?.token, 
           id: response?.data?.admin?.id, 
@@ -28,7 +27,7 @@ function AdminLogin() {
           
          
         }
-        console.log(userDatas)
+        // console.log(userDatas)
          
           localStorage.setItem('user', JSON.stringify(userDatas));
           // console.log(localStorage.getItem('token'));
@@ -38,7 +37,7 @@ function AdminLogin() {
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + response.data.token;
       })
       .catch(error => {
-        //   console.log(error)
+        
          
          
               setError(error.response?.data.message)

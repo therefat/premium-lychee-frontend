@@ -6,7 +6,7 @@ function AdminOutlet() {
     const role = admin?.role_id == '1'
 
     if (!role) {
-        return <Navigate to={'/login'} />;
+        return <Navigate to={'/admin-login'} />;
       }
       return  <Outlet></Outlet> 
 }
