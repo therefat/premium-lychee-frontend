@@ -23,7 +23,19 @@ function ProductCard({item}) {
             {/*  */} 
             <button onClick={() => {
                 console.log(item)
-                addItem(item,100)
+                addItem({
+                    attribute_type:item.attribute_type,
+                    categories: item.categories,
+                    category_id: item.category_id,
+                   
+                    description:item.description,
+                    id: item.id,
+                    image : item.image,
+                    name: item.name,
+                    price: item.price,
+                    item_id : item.id
+
+                },100)
             }} className="btn btn-primary bg-blue-400 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
                 Add to Cart
             </button>
