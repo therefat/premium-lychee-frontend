@@ -25,6 +25,8 @@ import AddAddressBook from './pages/dashboard/AddAddressBook'
 import AddressBook from './pages/dashboard/AddressBook'
 import UpdateAddress from './pages/dashboard/UpdateAddress'
 import CheckOut from './pages/dashboard/CheckOut'
+import AllOrder from './pages/Admin/order/AllOrder'
+import AllOrderUsers from './pages/user/Order/AllOrderUsers'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -46,6 +48,7 @@ function App() {
       <Route exact path='user/dashboard' element={<Dashboard/>}></Route>
       <Route exact path='user/updateaddress/:id' element={<UpdateAddress/>}></Route>
       <Route exact path='checkout' element={<CheckOut/>}></Route>
+      <Route exact path='user/order/allorder' element={<AllOrderUsers/>}></Route>
 
       </Route>
       {/* <Route exact path='/dashboard' element={<Dashboard/>}></Route> */}
@@ -57,6 +60,7 @@ function App() {
         <Route exact path='admin/addcategory' element={<AddCategory></AddCategory>}></Route>
         <Route exact path='admin/productlist' element={<ProductList/>}></Route>
         <Route exact path='admin/product/:id' element={<UpdateProduct/>}></Route>
+        <Route exact path='admin/allorder' element={<AllOrder/>}></Route>
       </Route>
     </Routes>
    

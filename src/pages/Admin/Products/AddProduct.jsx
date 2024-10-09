@@ -25,7 +25,8 @@ function AddProduct() {
       setImagess(file);
     }
   }; 
-  console.log(image)
+  const token = JSON.parse(localStorage.getItem('user'));
+
   
   const addVariation = () => {
     setVariations([...variations, { attribute_quantity: "", attribute_price: 0 }]);

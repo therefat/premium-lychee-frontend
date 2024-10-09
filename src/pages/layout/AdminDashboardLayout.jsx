@@ -17,7 +17,7 @@ function AdminDashboardLayout({children}) {
     <Link to={'/user/addressbook'} className={`mx-4 p-2 ${window.location.pathname === '/user/addressbook' ? 'bg-primary text-white' : 'bg-blue-400'} rounded-lg flex w-100 justify-center mb-4`}>Address Book</Link> 
 
     <Link to={'/admin/dashboard/addProduct'} className={`mx-4 p-2 ${window.location.pathname === '/user/addproduct' ? 'bg-primary text-white' : 'bg-blue-400'} rounded-lg flex w-100 justify-center mb-4`}>Add Product</Link>  
-    <Link to={'/user/order/allorder'} className={`mx-4 p-2 ${window.location.pathname === '/user/order/allorder' ? 'bg-primary text-white' : 'bg-blue-400'} rounded-lg flex w-100 justify-center mb-4`}>All Order</Link>
+    <Link to={'/admin/allorder'} className={`mx-4 p-2 ${window.location.pathname === '/admin/allorder' ? 'bg-primary text-white' : 'bg-blue-400'} rounded-lg flex w-100 justify-center mb-4`}>All Order</Link>
     
 </div>
 

@@ -15,6 +15,7 @@ function CheckOut() {
   const [transactionid,setTransactionID] = useState('')
  
   const token = JSON.parse(localStorage.getItem('user'));
+ 
  console.log(defaultAddress)
   useEffect(() => {
     axios
@@ -35,6 +36,7 @@ function CheckOut() {
   //post order data 
   const checkoutOrder = (e) => {
     const token = JSON.parse(localStorage.getItem('user'));
+    
     e.preventDefault();
     let orderData = {};
     
@@ -42,7 +44,7 @@ function CheckOut() {
       .post(
         "order/neworder",
         {
-          owner_id:1,
+          owner_id:token?.id,
           user_name: "Refat",
             user_email: "test@gmail.com",
             shipping_name: defaultAddress?.name,
