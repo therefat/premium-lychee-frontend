@@ -70,7 +70,7 @@ function AllOrderUsers() {
                                 <td dataTitle="Amount" className="px-6 py-4 font-bold ConOrderTableTh">
                                     {order.bill} Tk
                                 </td>
-                                <td className=" text-center"><Link to={`/order/ordersummery/${order._id}`} className="bg-blue-600 rounded-lg py-2 px-4 text-white hover:bg-blue-800">View</Link> </td>
+                                <td className=" text-center"><Link to={`/order/ordersummery/${order.id}`} className="bg-blue-600 rounded-lg py-2 px-4 text-white hover:bg-blue-800">View</Link> </td>
                             </tr>
                         )
                     }
