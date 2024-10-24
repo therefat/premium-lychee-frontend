@@ -6,7 +6,7 @@ function ProductCard({item}) {
     const { addItem } = useCart();
    
   return (
-    <div className="bg-[#87CEEB] rounded-lg overflow-hidden shadow-lg ring-4 ring-red-500 ring-opacity-40 max-w-sm">
+    <div className="bg-[#87CEEB] rounded-lg overflow-hidden shadow-lg ring-4 ring-red-500 ring-opacity-40 ">
     <div className="relative">
         <Link  to={`lychee/${item.name}/${item.id}`}>
         <img className="w-full h-[250px]" src={item.image} alt="Product Image"/>
@@ -32,7 +32,7 @@ function ProductCard({item}) {
                     id: item.id,
                     image : item.image,
                     name: item.name,
-                    price: item.price,
+                    price: item.price, 
                     item_id : item.id
 
                 },100)
